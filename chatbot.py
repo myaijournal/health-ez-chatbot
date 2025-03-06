@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 # Load .env file
 load_dotenv()
 
+
 if not os.environ.get("OPENAI_API_KEY"):
   os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
