@@ -10,11 +10,11 @@ import os
 
 from dotenv import load_dotenv
 
-# Load the environment variables from .env file
+# Load .env file
 load_dotenv()
 
 if not os.environ.get("OPENAI_API_KEY"):
-  os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter API key for OpenAI: ")
+  os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 
 messages = []
@@ -23,7 +23,7 @@ messages = []
 st.title("HealthEZ Chatbot")
 prompt = st.text_input("Ask me about your appointment or reschedule request")
 
-# Defining tools that interact with Flask API
+# Tools
 @tool(parse_docstring=True)
 def get_next_appointment(patient_id: int) -> dict:
     """Fetches the next appointment date for a given patient. Call this whenever a patient wants to know their next scheduled appointment.
